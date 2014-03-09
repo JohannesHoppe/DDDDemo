@@ -1,6 +1,6 @@
 [Bb]in/
 [Oo]bj/
-#packages/
+packages/
 *.user
 *.suo
 _Resharper*
