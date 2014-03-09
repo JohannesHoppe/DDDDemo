@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm.Web.Mvc", "Crm.Web.Mvc\Crm.Web.Mvc.csproj", "{524D3521-52DC-4115-B22F-35AC88A13347}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm.Web.Mvc.IntegrationTests", "Crm.Web.Mvc.Tests\Crm.Web.Mvc.IntegrationTests.csproj", "{26F227A0-8484-430A-ADC4-1598D21AEC8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F9D9BE83-88AB-4AFC-A766-9DB0A66D0EF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm.Domain", "Crm.Domain\Crm.Domain.csproj", "{B805629D-4C71-42AE-A9FC-B6132C26DAC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm.Infrastructure", "Crm.Infrastructure\Crm.Infrastructure.csproj", "{74A7AD61-E9B8-4688-B0D5-CD7EC761F027}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crm.Interfaces", "Crm.Interfaces\Crm.Interfaces.csproj", "{74EAB522-D08F-4C01-B753-B31131BC7C6D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6C6B24E0-2D72-4B03-B599-C79679A4E8F1}"
+	ProjectSection(SolutionItems) = preProject
+		JSLintOptions.xml = JSLintOptions.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(JSLint) = preSolution
+		SolutionConfigurationLocation = JSLintOptions.xml
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{524D3521-52DC-4115-B22F-35AC88A13347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{524D3521-52DC-4115-B22F-35AC88A13347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{524D3521-52DC-4115-B22F-35AC88A13347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{524D3521-52DC-4115-B22F-35AC88A13347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26F227A0-8484-430A-ADC4-1598D21AEC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26F227A0-8484-430A-ADC4-1598D21AEC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26F227A0-8484-430A-ADC4-1598D21AEC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26F227A0-8484-430A-ADC4-1598D21AEC8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B805629D-4C71-42AE-A9FC-B6132C26DAC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B805629D-4C71-42AE-A9FC-B6132C26DAC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B805629D-4C71-42AE-A9FC-B6132C26DAC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B805629D-4C71-42AE-A9FC-B6132C26DAC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74A7AD61-E9B8-4688-B0D5-CD7EC761F027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74A7AD61-E9B8-4688-B0D5-CD7EC761F027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74A7AD61-E9B8-4688-B0D5-CD7EC761F027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74A7AD61-E9B8-4688-B0D5-CD7EC761F027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74EAB522-D08F-4C01-B753-B31131BC7C6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74EAB522-D08F-4C01-B753-B31131BC7C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74EAB522-D08F-4C01-B753-B31131BC7C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74EAB522-D08F-4C01-B753-B31131BC7C6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B805629D-4C71-42AE-A9FC-B6132C26DAC3} = {F9D9BE83-88AB-4AFC-A766-9DB0A66D0EF8}
+		{74A7AD61-E9B8-4688-B0D5-CD7EC761F027} = {F9D9BE83-88AB-4AFC-A766-9DB0A66D0EF8}
+		{74EAB522-D08F-4C01-B753-B31131BC7C6D} = {F9D9BE83-88AB-4AFC-A766-9DB0A66D0EF8}
+	EndGlobalSection
+EndGlobal

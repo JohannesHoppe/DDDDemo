@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CrmModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CrmModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="CrmModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CustomerToTag" EntityType="CrmModel.Store.CustomerToTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tag" EntityType="CrmModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CustomerToTag_Customer" Association="CrmModel.Store.FK_CustomerToTag_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="CustomerToTag" EntitySet="CustomerToTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerToTag_Tag" Association="CrmModel.Store.FK_CustomerToTag_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="CustomerToTag" EntitySet="CustomerToTag" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="text" />
+        </EntityType>
+        <EntityType Name="CustomerToTag">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="text" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CustomerToTag_Customer">
+          <End Role="Customer" Type="CrmModel.Store.Customer" Multiplicity="1" />
+          <End Role="CustomerToTag" Type="CrmModel.Store.CustomerToTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerToTag">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerToTag_Tag">
+          <End Role="Tag" Type="CrmModel.Store.Tag" Multiplicity="1" />
+          <End Role="CustomerToTag" Type="CrmModel.Store.CustomerToTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerToTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CrmModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CrmEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="CrmModel.Customer" />
+          <EntitySet Name="CustomerToTags" EntityType="CrmModel.CustomerToTag" />
+          <EntitySet Name="Tags" EntityType="CrmModel.Tag" />
+          <AssociationSet Name="FK_CustomerToTag_Customer" Association="CrmModel.FK_CustomerToTag_Customer">
+            <End EntitySet="Customers" Role="Customer" />
+            <End EntitySet="CustomerToTags" Role="CustomerToTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CustomerToTag_Tag" Association="CrmModel.FK_CustomerToTag_Tag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="CustomerToTag" EntitySet="CustomerToTags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Int32" />
+          <Property Name="Name" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
+          <NavigationProperty Name="CustomerToTags" Relationship="CrmModel.FK_CustomerToTag_Customer" FromRole="Customer" ToRole="CustomerToTag" />
+        </EntityType>
+        <EntityType Name="CustomerToTag">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="CrmModel.FK_CustomerToTag_Customer" FromRole="CustomerToTag" ToRole="Customer" />
+          <NavigationProperty Name="Tag" Relationship="CrmModel.FK_CustomerToTag_Tag" FromRole="CustomerToTag" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="CustomerToTags" Relationship="CrmModel.FK_CustomerToTag_Tag" FromRole="Tag" ToRole="CustomerToTag" />
+        </EntityType>
+        <Association Name="FK_CustomerToTag_Customer">
+          <End Type="CrmModel.Customer" Multiplicity="1" Role="Customer" />
+          <End Type="CrmModel.CustomerToTag" Multiplicity="*" Role="CustomerToTag" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerToTag">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CustomerToTag_Tag">
+          <End Role="Tag" Type="CrmModel.Tag" Multiplicity="1" />
+          <End Role="CustomerToTag" Type="CrmModel.CustomerToTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomerToTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CrmModelStoreContainer" CdmEntityContainer="CrmEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="CrmModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerToTags">
+            <EntityTypeMapping TypeName="CrmModel.CustomerToTag">
+              <MappingFragment StoreEntitySet="CustomerToTag">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="CrmModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
